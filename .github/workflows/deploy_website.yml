@@ -21,7 +21,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-hugomod-            
       - name: Build Blog
-        run: hugo --minify
+        run: |
+          cd lawrencecarltan
+          hugo --minify
       # DEPLOY TO REMOTE SERVER
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
