@@ -7,19 +7,17 @@ description = """
 Systems Engineer. Finds excitement in the mundane.
 I share my thoughts around about SRE, engineering and occasionally my runs in the open road.
 """
-
-
- 
 author = "Lawrence Tan"
 profilePicture = "images/profile.png"
 displayMode = "dark"
 disableThemeSwitcher = true
 favicon = "favicons/"
+gtagId = "G-RWQYC3JWNK"
 
 [[params.socialIcons]]
 icon = "fab fa-linkedin"
 title = "Linkedin"
-url = "linkedin.com/in/tanlawrencecarl"
+url = "https://linkedin.com/in/tanlawrencecarl"
 
 [[params.socialIcons]]
 icon = "fa-brands fa-github"
@@ -29,7 +27,7 @@ url = "https://github.com/lawrencecarltan"
 [[params.socialIcons]]
 icon = "fa-brands fa-strava"
 title = "Strava"
-url = "http://strava.app.link/G9U9mdbIZKb"
+url = "https://strava.app.link/G9U9mdbIZKb"
 
 [[params.socialIcons]]
 icon = "fas fa-envelope"
@@ -73,7 +71,3 @@ url = "mailto:tan.lawrencecarl@gmail.com"
   weight = 600
   identifier = "Contact"
   url = "/contact/"
-
-# Google Analytics
-  [services.googleAnalytics]
-    ID = 'G-MEASUREMENT_ID'

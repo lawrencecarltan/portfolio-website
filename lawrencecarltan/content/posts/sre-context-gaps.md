@@ -1,6 +1,6 @@
 +++
 date = '2024-04-26T18:22:42+11:00'
-draft = true
+draft = false
 title = 'Bridging the Context Gap Between Teams Through Site Reliability Engineering'
 thumbnail= "images/sre-context-gaps.webp"
 +++
