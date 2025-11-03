@@ -1,0 +1,79 @@
+baseURL = 'https://lawrencecarltan.io/'
+languageCode = 'en-us'
+theme = 'anatole'
+
+[params]
+description = """
+Systems Engineer. Finds excitement in the mundane.
+I share my thoughts around about SRE, engineering and occasionally my runs in the open road.
+"""
+
+
+ 
+author = "Lawrence Tan"
+profilePicture = "images/profile.png"
+displayMode = "dark"
+disableThemeSwitcher = true
+favicon = "favicons/"
+
+[[params.socialIcons]]
+icon = "fab fa-linkedin"
+title = "Linkedin"
+url = "linkedin.com/in/tanlawrencecarl"
+
+[[params.socialIcons]]
+icon = "fa-brands fa-github"
+title = "GitHub"
+url = "https://github.com/lawrencecarltan"
+
+[[params.socialIcons]]
+icon = "fa-brands fa-strava"
+title = "Strava"
+url = "http://strava.app.link/G9U9mdbIZKb"
+
+[[params.socialIcons]]
+icon = "fas fa-envelope"
+title = "e-mail"
+url = "mailto:tan.lawrencecarl@gmail.com"
+
+[menu]
+
+  [[menu.main]]
+  name = "Home"
+  identifier = "home"
+  weight = 100
+  url = "/"
+
+  [[menu.main]]
+  name = "Blog"
+  weight = 200
+  identifier = "blog"
+  url = "/posts/"
+
+  [[menu.main]]
+  name = "Resume"
+  weight = 300
+  identifier = "resume"
+  url = "/resume/"
+
+  [[menu.main]]
+  name = "Running"
+  weight = 400
+  identifier = "running"
+  url = "/running/"
+
+  [[menu.main]]
+  name = "About"
+  weight = 500
+  identifier = "about"
+  url = "/about/"
+
+  [[menu.main]]
+  name = "Contact"
+  weight = 600
+  identifier = "Contact"
+  url = "/contact/"
+
+# Google Analytics
+  [services.googleAnalytics]
+    ID = 'G-MEASUREMENT_ID'

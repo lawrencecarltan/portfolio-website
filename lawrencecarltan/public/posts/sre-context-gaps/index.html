@@ -1,0 +1,517 @@
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme="dark"
+  
+    class="html theme--dark"
+  
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <title>
+    Lawrence Tan
+        |
+        Bridging the Context Gap Between Teams Through Site Reliability Engineering
+      
+
+    
+
+  </title>
+
+  <meta name="generator" content="Hugo 0.152.2"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Lawrence Tan" />
+  <meta
+    name="description"
+    content="Systems Engineer. Finds excitement in the mundane.
+I share my thoughts around about SRE, engineering and occasionally my runs in the open road.
+"
+  />
+  
+  
+        <link rel="stylesheet" href="/css/anatole.css" />
+      
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+
+  <link rel="canonical" href="http://localhost:1313/posts/sre-context-gaps/" />
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bridging the Context Gap Between Teams Through Site Reliability Engineering">
+  <meta name="twitter:description" content="With the rise of more composable architectures such as microservices in modern software, application components are becoming smaller and more independent than ever before. Unsurprisingly, this shift aligns with the growing need for scalable, flexible, and agile solutions to meet the increasing complexity of today’s fast-paced digital landscape.
+An inadvertent drawback however, is that as services become more composable, organizational teams have naturally reflected this structure as well. In a way, this is simply Conway’s Law in action.">
+
+
+
+  
+  <meta property="og:url" content="http://localhost:1313/posts/sre-context-gaps/">
+  <meta property="og:title" content="Bridging the Context Gap Between Teams Through Site Reliability Engineering">
+  <meta property="og:description" content="With the rise of more composable architectures such as microservices in modern software, application components are becoming smaller and more independent than ever before. Unsurprisingly, this shift aligns with the growing need for scalable, flexible, and agile solutions to meet the increasing complexity of today’s fast-paced digital landscape.
+An inadvertent drawback however, is that as services become more composable, organizational teams have naturally reflected this structure as well. In a way, this is simply Conway’s Law in action.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-04-26T18:22:42+11:00">
+    <meta property="article:modified_time" content="2024-04-26T18:22:42+11:00">
+
+
+
+  
+  
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "posts",
+        "name": "Bridging the Context Gap Between Teams Through Site Reliability Engineering",
+        "headline": "Bridging the Context Gap Between Teams Through Site Reliability Engineering",
+        "alternativeHeadline": "",
+        "description": "
+      
+        \u003cp\u003eWith the rise of more composable architectures such as microservices in modern software, application components are becoming smaller and more independent than ever before. Unsurprisingly, this shift aligns with the growing need for scalable, flexible, and agile solutions to meet the increasing complexity of today’s fast-paced digital landscape.\u003c\/p\u003e\n\u003cp\u003eAn inadvertent drawback however, is that as services become more composable, organizational teams have naturally reflected this structure as well. In a way, this is simply \u003ca href=\u0022https:\/\/www.atlassian.com\/blog\/teamwork\/what-is-conways-law-acmi\u0022\u003eConway’s Law\u003c\/a\u003e in action.\u003c\/p\u003e
+
+
+      
+
+
+    ",
+        "license": "",
+        
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/sre-context-gaps\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Lawrence Tan"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Lawrence Tan"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Lawrence Tan"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Lawrence Tan"
+        },
+        "dateCreated": "2024-04-26T18:22:42.00Z",
+        "datePublished": "2024-04-26T18:22:42.00Z",
+        "dateModified": "2024-04-26T18:22:42.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Lawrence Tan",
+            "url": "http://localhost:1313/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http:\/\/localhost:1313\/favicons\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "http:\/\/localhost:1313\/posts\/sre-context-gaps\/",
+        "wordCount" : "773",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+
+
+  
+  
+  
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.png"
+        alt="profile picture"
+      />
+      
+        <div class="sidebar__introduction-title">
+          <a href="/"></a>
+        </div>
+      
+      <div class="sidebar__introduction-description">
+        <p>Systems Engineer. Finds excitement in the mundane.<br />I share my thoughts around about SRE, engineering and occasionally my runs in the open road.<br /></p>
+      </div>
+    </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="linkedin.com/in/tanlawrencecarl"
+            target="_blank"
+            rel="noopener me"
+            aria-label="Linkedin"
+            title="Linkedin"
+          >
+            <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/lawrencecarltan"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="http://strava.app.link/G9U9mdbIZKb"
+            target="_blank"
+            rel="noopener me"
+            aria-label="Strava"
+            title="Strava"
+          >
+            <i class="fa-brands fa-strava fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:tan.lawrencecarl@gmail.com"
+            target="_blank"
+            rel="noopener me"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Lawrence Tan
+        2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.9531b4a2217a70c5a1fce89c1f81c9ebbdd586708fcd4130b417320c7230c8d6.js"
+    integrity="sha256-lTG0oiF6cMWh/OicH4HJ673VhnCPzUEwtBcyDHIwyNY="
+    crossorigin="anonymous"
+  ></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MEASUREMENT_ID');
+        }
+      </script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Home</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/posts/"
+              
+              title=""
+              >Blog</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/resume/"
+              
+              title=""
+              >Resume</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/running/"
+              
+              title=""
+              >Running</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+        
+
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/contact/"
+              
+              title=""
+              >Contact</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+      <div class="post__thumbnail-wrapper">
+        <img class="post__thumbnail" src="/images/sre-context-gaps.webp" alt="Thumbnail image" />
+      </div>
+    
+    <div class="post__content">
+      
+        <h1>Bridging the Context Gap Between Teams Through Site Reliability Engineering</h1>
+      
+      <p>With the rise of more composable architectures such as microservices in modern software, application components are becoming smaller and more independent than ever before. Unsurprisingly, this shift aligns with the growing need for scalable, flexible, and agile solutions to meet the increasing complexity of today’s fast-paced digital landscape.</p>
+<p>An inadvertent drawback however, is that as services become more composable, organizational teams have naturally reflected this structure as well. In a way, this is simply <a href="https://www.atlassian.com/blog/teamwork/what-is-conways-law-acmi">Conway’s Law</a> in action.</p>
+<p>As such, gaps that start to form not only between teams but within the multiple roles within it are often overlooked. This disconnect, often referred to as “context gap”, arises from the different priorities, tools and even language between different teams and roles within teams.</p>
+<p>Site Reliability Engineering (SRE) emerges as a powerful methodology to bridge this gap, fostering collaboration which ultimately enhances system reliability and quality. This article further delves into the reasons for context gaps, how it impacts organizations and how SRE principles can be an effective mitigation against these challenges.</p>
+<h2 id="understanding-context-gaps-and-its-impact">Understanding Context Gaps and Its Impact</h2>
+<p>The first type of context gap is one that exists between teams owning different microservices that compose an application. The challenge is that most often, teams simply end up looking after their own microservice with no further context as to how they play a part in the bigger picture.</p>
+<p>The second type of context gap is more challenging as it is one that exists between the different roles within a team. Categorically speaking, there are 3 main roles in software delivery teams — Product Management, Product Development and Product Operations.</p>
+<p>Context gaps within these roles exist simply because of the nature of what each role prioritizes:</p>
+<ul>
+<li><strong>Product Management</strong> wants to introduce new features that customers ask for</li>
+<li><strong>Product Development</strong> wants to develop the new features defined by Product Management and deliver it as quickly as possible</li>
+<li><strong>Product Operations</strong> wants to keep availability of the application and hence naturally wants to keep changes to a minimum (especially if changes have historically caused outages)</li>
+</ul>
+<p>These distinct priorities result in misalignment, conflicts which subsequently lead to a product that is <strong>not delivered with agility, not reliable, and not relied on by its customers.</strong> Unmistakably, this means that each of the goals of each role mentioned above are not sufficiently met.</p>
+<p>The reality is, operational stability and reliability is every role’s job zero. If an application is operationally unavailable:</p>
+<ul>
+<li>The new features that Product Management pushes for won’t be available</li>
+<li>The features delivered quickly by Developers won’t be used</li>
+<li>Operations will be working day and night</li>
+</ul>
+<h2 id="bridging-the-gap-with-site-reliability-engineering">Bridging the Gap with Site Reliability Engineering</h2>
+<p>Site Reliability Engineering offers a holistic approach to address not only the challenges posed by context gaps but the reasons they exist in the first place. It emphasizes the collaboration between Product Management, Development, and Operations Teams by establishing shared goals and tooling to amplify system reliability, scalability, and performance. Here’s how SRE principles help bridge context gaps:</p>
+<ul>
+<li><strong>Shared Objectives:</strong> SRE encourages Dev and Ops teams to align around common objectives, such as service uptime, latency targets, and error rates. By establishing Service Level Objectives (SLOs) and Service Level Indicators (SLIs), teams gain a shared understanding of system behaviour and performance expectations.</li>
+<li><strong>Automation and Tooling:</strong> Automation plays a pivotal role in SRE practices, enabling teams to streamline repetitive tasks, reduce manual errors, and enhance operational efficiency. By investing in robust monitoring, deployment, and incident response tooling, organizations empower both Dev and Ops teams to collaborate effectively while maintaining system reliability.</li>
+<li><strong>Blameless Culture:</strong> SRE promotes a blameless culture where failures are treated as learning opportunities rather than occasions for assigning blame. By fostering an environment of psychological safety, teams are more inclined to share knowledge, collaborate on solutions, and proactively address issues without fear of repercussion.</li>
+<li><strong>Continuous Improvement:</strong> SRE embraces the principles of continuous improvement and iteration. Through practices like blameless postmortems and retrospectives, teams reflect on past incidents, identify areas for improvement, and iteratively enhance system resilience and reliability.</li>
+<li><strong>Cross-Functional Collaboration:</strong> SRE encourages cross-functional collaboration through practices like shared on-call rotations and incident response exercises. By breaking down silos and fostering empathy between Dev and Ops teams, organizations can leverage diverse perspectives to tackle complex challenges more effectively.</li>
+</ul>
+<p>Context gaps between development and operations teams present significant challenges for organizations striving to deliver reliable services. However, by embracing key SRE principles, we can start bridging these gaps by fostering collaboration, enhancing system reliability and ultimately deliver greater value to users. By prioritizing shared objectives, engineering mindset, blameless culture, continuous improvement, and cross-functional collaboration, organizations can embark on a journey towards a more reliable and resilient digital future.</p>
+</div>
+    <div class="post__footer">
+      
+
+      
+    </div>
+
+    
+  </div>
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        Lawrence Tan
+        2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.9531b4a2217a70c5a1fce89c1f81c9ebbdd586708fcd4130b417320c7230c8d6.js"
+    integrity="sha256-lTG0oiF6cMWh/OicH4HJ673VhnCPzUEwtBcyDHIwyNY="
+    crossorigin="anonymous"
+  ></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MEASUREMENT_ID');
+        }
+      </script></body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>https://lawrencecarltan.io/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://lawrencecarltan.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contact</title>
+      <link>https://lawrencecarltan.io/contact/</link>
+      <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://lawrencecarltan.io/contact/</guid>
+      
+        <description>Contact Page</description>
+      
+    </item>
+    
+    <item>
+      <title>Running</title>
+      <link>https://lawrencecarltan.io/running/</link>
+      <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://lawrencecarltan.io/running/</guid>
+      
+        <description>Hugo, the world&#39;s fastest framework for building websites</description>
+      
+    </item>
+    
+  </channel>
+</rss>
