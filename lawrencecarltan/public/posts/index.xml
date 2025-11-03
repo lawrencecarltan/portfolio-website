@@ -2,10 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on </title>
-    <link>https://lawrencecarltan.io/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Apr 2024 18:22:42 +1100</lastBuildDate><atom:link href="https://lawrencecarltan.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Apr 2024 18:22:42 +1100</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bridging the Context Gap Between Teams Through Site Reliability Engineering</title>
+      <link>http://localhost:1313/posts/sre-context-gaps/</link>
+      <pubDate>Fri, 26 Apr 2024 18:22:42 +1100</pubDate>
+      
+      <guid>http://localhost:1313/posts/sre-context-gaps/</guid>
+      
+        <description>&lt;p&gt;With the rise of more composable architectures such as microservices in modern software, application components are becoming smaller and more independent than ever before. Unsurprisingly, this shift aligns with the growing need for scalable, flexible, and agile solutions to meet the increasing complexity of today’s fast-paced digital landscape.&lt;/p&gt;
+&lt;p&gt;An inadvertent drawback however, is that as services become more composable, organizational teams have naturally reflected this structure as well. In a way, this is simply &lt;a href=&#34;https://www.atlassian.com/blog/teamwork/what-is-conways-law-acmi&#34;&gt;Conway’s Law&lt;/a&gt; in action.&lt;/p&gt;</description>
+      
+    </item>
+    
   </channel>
 </rss>
