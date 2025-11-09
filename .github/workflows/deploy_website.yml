@@ -36,3 +36,18 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.DEPLOY_HOST_IP }} >> ~/.ssh/known_hosts
       - name: Deploy with rsync
         run: rsync -avz --delete ./lawrencecarltan/public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST_IP }}:${{ secrets.DEPLOY_PATH }}      
+      # Trial for AWS SSM Connectivity
+      - name: AWS SSM Command
+        uses: Castlenine/aws-ssm-command@v1
+        id: ssm
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          instance-ids: ${{ secrets.INSTANCE_ID }}
+          working-directory: '/var/www/lawrencetan.io'
+          command: 'echo "Hello World from Github Actions"'
+          comment: 'Command executed by Github Actions'
+
+      - name: Capture SSM command outputs
+        run: echo "Requested at ${{ steps.ssm.outputs.request-date-time }} for ${{ steps.ssm.outputs.request-id }} and the status is ${{ steps.ssm.outputs.command-status-details }}" && echo "The command output is ${{ steps.ssm.outputs.command-output }}"
