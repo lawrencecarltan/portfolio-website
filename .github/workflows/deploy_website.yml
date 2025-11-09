@@ -27,27 +27,32 @@ jobs:
           cd lawrencecarltan
           hugo --minify
       # DEPLOY TO REMOTE SERVER
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.DEPLOY_KEY }} 
-          known_hosts: 'placeholder'
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.DEPLOY_HOST_IP }} >> ~/.ssh/known_hosts
-      - name: Deploy with rsync
-        run: rsync -avz --delete ./lawrencecarltan/public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST_IP }}:${{ secrets.DEPLOY_PATH }}      
+      #- name: Install SSH Key
+      #  uses: shimataro/ssh-key-action@v2
+      #  with:
+      #    key: ${{ secrets.DEPLOY_KEY }} 
+      #    known_hosts: 'placeholder'
+      #- name: Adding Known Hosts
+      #  run: ssh-keyscan -H ${{ secrets.DEPLOY_HOST_IP }} >> ~/.ssh/known_hosts
+      #- name: Deploy with rsync
+      #  run: rsync -avz --delete ./lawrencecarltan/public/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST_IP }}:${{ secrets.DEPLOY_PATH }}      
       # Trial for AWS SSM Connectivity
-      - name: AWS SSM Command
-        uses: Castlenine/aws-ssm-command@v1
-        id: ssm
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.PROD_AWS_REGION }}
-          instance-ids: ${{ secrets.PROD_INSTANCE_ID }}
-          working-directory: '/var/www/lawrencetan.io'
-          command: 'echo "Hello World from Github Actions" >> output_test'
-          comment: 'Command executed by Github Actions'
+      - name: Deploy via SSM (direct copy)
+        run: |
+          cd ./lawrencecarltan/public/
+          zip -r public.zip .
+          b64=$(base64 public.zip | tr -d '\n')
 
-      - name: Capture SSM command outputs
-        run: echo "Requested at ${{ steps.ssm.outputs.request-date-time }} for ${{ steps.ssm.outputs.request-id }} and the status is ${{ steps.ssm.outputs.command-status-details }}" && echo "The command output is ${{ steps.ssm.outputs.command-output }}"
+          aws ssm send-command \
+            --instance-ids "${{ secrets.INSTANCE_ID }}" \
+            --document-name "AWS-RunShellScript" \
+            --parameters "commands=[
+              'echo ${b64} | base64 -d > /tmp/public.zip',
+              'sudo unzip -o /tmp/app.zip -d /var/www/test/'
+            ]"
