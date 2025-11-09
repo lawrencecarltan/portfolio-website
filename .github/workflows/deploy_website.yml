@@ -63,12 +63,12 @@ jobs:
               "sudo aws s3 cp s3://lawrencetanio-artifactory/public.zip .",
               "sudo unzip -o public.zip",
               "sudo systemctl restart httpd"
-            ]'
+            ]' \
             --query "Command.CommandId" \
             --output text)
           echo "Command ID: $COMMAND_ID"
           echo "::set-output name=command_id::$COMMAND_ID"    
-      
+    
       - name: Output execution via SSM
         id : output_execution
         run: |
