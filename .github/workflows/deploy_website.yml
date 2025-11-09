@@ -52,8 +52,9 @@ jobs:
           cd ./lawrencecarltan/public/
           aws s3 cp public.zip s3://lawrencetanio-artifactory/public.zip
       - name: Deploy to EC2 via SSM
+        id: execute_command
         run: |
-          aws ssm send-command \
+          COMMAND_ID=$(aws ssm send-command \
             --instance-ids "${{ secrets.PROD_INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
             --comment "Deploy new version from GitHub" \
@@ -63,3 +64,19 @@ jobs:
               "sudo unzip -o public.zip",
               "sudo systemctl restart httpd"
             ]'
+            --query "Command.CommandId" \
+            --output text)
+          echo "Command ID: $COMMAND_ID"
+          echo "::set-output name=command_id::$COMMAND_ID"    
+      
+      - name: Output execution via SSM
+        id : output_execution
+        run: |
+          sleep 15s
+          COMMAND_ID=${{ steps.execute_command.outputs.command_id }}
+          aws ssm list-command-invocations \
+            --details \
+            --instance-id ${{ secrets.PROD_INSTANCE_ID }} \
+            --query "CommandInvocations[].CommandPlugins[].{Status:Status,Output:Output}" \
+            --command-id "$COMMAND_ID" \
+            --output text
