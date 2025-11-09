@@ -68,7 +68,7 @@ jobs:
               "cd /var/www/lawrencetan.io/public",
               "sudo aws s3 cp s3://lawrencetanio-artifactory/public.zip .",
               "sudo unzip -o public.zip",
-              "sudo rm /var/www/lawrence.tan.io/public/public.zip",
+              "sudo rm /var/www/lawrencetan.io/public/public.zip",
               "sudo systemctl restart httpd"
             ]' \
             --query "Command.CommandId" \
