@@ -49,6 +49,7 @@ jobs:
           zip -r public.zip .
       - name: Upload package to S3
         run: |
+          cd ./lawrencecarltan/public/
           aws s3 cp public.zip s3://lawrencetanio-artifactory/public.zip
       - name: Deploy to EC2 via SSM
         run: |
