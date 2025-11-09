@@ -46,7 +46,7 @@ jobs:
           aws-region: ${{ secrets.PROD_AWS_REGION }}
           instance-ids: ${{ secrets.PROD_INSTANCE_ID }}
           working-directory: '/var/www/lawrencetan.io'
-          command: 'echo "Hello World from Github Actions"'
+          command: 'echo "Hello World from Github Actions" >> output_test'
           comment: 'Command executed by Github Actions'
 
       - name: Capture SSM command outputs
