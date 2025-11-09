@@ -43,16 +43,22 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.PROD_AWS_REGION }}
-      - name: Deploy via SSM (direct copy)
+      - name: Package application
         run: |
           cd ./lawrencecarltan/public/
           zip -r public.zip .
-          b64=$(base64 public.zip | tr -d '\n')
-
+      - name: Upload package to S3
+        run: |
+          aws s3 cp public.zip s3://lawrencetanio-artifactory/public.zip
+      - name: Deploy to EC2 via SSM
+        run: |
           aws ssm send-command \
             --instance-ids "${{ secrets.PROD_INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
-            --parameters "commands=[
-              'echo ${b64} | base64 -d > /tmp/public.zip',
-              'sudo unzip -o /tmp/app.zip -d /var/www/test/'
-            ]"
+            --comment "Deploy new version from GitHub" \
+            --parameters 'commands=[
+              "cd /var/www/test",
+              "sudo aws s3 cp s3://lawrencetanio-artifactory/public.zip .",
+              "sudo unzip -o public.zip",
+              "sudo systemctl restart httpd"
+            ]'
