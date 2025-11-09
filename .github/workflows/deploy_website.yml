@@ -43,8 +43,8 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-          instance-ids: ${{ secrets.INSTANCE_ID }}
+          aws-region: ${{ secrets.PROD_AWS_REGION }}
+          instance-ids: ${{ secrets.PROD_INSTANCE_ID }}
           working-directory: '/var/www/lawrencetan.io'
           command: 'echo "Hello World from Github Actions"'
           comment: 'Command executed by Github Actions'
