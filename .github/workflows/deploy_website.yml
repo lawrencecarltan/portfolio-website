@@ -59,7 +59,7 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --comment "Deploy new version from GitHub" \
             --parameters 'commands=[
-              "sudo mkdir /var/www/test2",
+              "cd /var/www/test",
               "sudo aws s3 cp s3://lawrencetanio-artifactory/public.zip .",
               "sudo unzip -o public.zip",
               "sudo systemctl restart httpd"
@@ -68,7 +68,6 @@ jobs:
             --output text)
           echo "Command ID: $COMMAND_ID"
           echo "::set-output name=command_id::$COMMAND_ID"    
-    
       - name: Output execution via SSM
         id : output_execution
         run: |
